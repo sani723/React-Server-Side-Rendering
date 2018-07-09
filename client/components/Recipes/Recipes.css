@@ -1,0 +1,19 @@
+.recipe {
+  position: relative;
+  margin-bottom: 25px;
+}
+.recipe__meta {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  padding: 10px 0;
+  font-size: 14px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.imgResponsive {
+  width: 100%;
+  max-width: 390px;
+  height: 260px;
+}

@@ -1,0 +1,13 @@
+.root {
+  flex-grow: 1;
+}
+.flex {
+  flex: 1;
+}
+.menuButton {
+  margin-left: -12px;
+  margin-right: 20px;
+}
+header {
+  margin-bottom: 25px;
+}

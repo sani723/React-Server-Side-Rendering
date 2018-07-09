@@ -1,0 +1,24 @@
+.book {
+  margin-bottom: 25px;
+  display: flex;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+.book__thumbnail {
+  width: 128px;
+  height: 186px;
+}
+.book__thumbnail img {
+  width: 128px;
+  height: 186px;
+}
+.book__meta {
+  flex-grow: 1;
+  padding: 10px;
+  font-size: 14px;
+  text-align: left;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.book__meta > * {
+  display: flex;
+}

@@ -1,0 +1,26 @@
+{
+  "name": "ssr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@zeit/next-css": "^0.2.0",
+    "apollo-boost": "^0.1.10",
+    "axios": "^0.18.0",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2",
+    "isomorphic-unfetch": "^2.0.0",
+    "next": "^6.1.1",
+    "react": "^16.4.1",
+    "react-apollo": "^2.1.9",
+    "react-dom": "^16.4.1"
+  }
+}
