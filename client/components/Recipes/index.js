@@ -4,9 +4,9 @@ import css from "./Recipes.css";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
-const getRecipesQuery = gql`
-  {
-    getRecipes {
+const GET_RECIPES_QUERY = gql`
+  query GetRecipes($offset: Int, $limit: Int) {
+    getRecipes(offset: $offset, limit: $limit) {
       image
       label
     }
@@ -18,19 +18,47 @@ class Recipes extends React.Component {
     return (
       <div className="container-fluid">
         <div className="row">
-          {/*this.props.recipes.hits.map((item, index) => (
-            <Recipe key={index} item={item} />
-          ))*/}
-
-          <Query query={getRecipesQuery}>
-            {({ loading, error, data }) => {
+          <Query
+            query={GET_RECIPES_QUERY}
+            variables={{
+              offset: 0,
+              limit: 12
+            }}
+            notifyOnNetworkStatusChange
+          >
+            {({ loading, error, data, fetchMore }) => {
               if (loading) return <p>Loading...</p>;
               if (error) return <p>Error :( {error}</p>;
 
-              //console.log(data);
-              return data.getRecipes.map((item, index) => (
-                <Recipe key={index} item={item} />
-              ));
+              return (
+                <React.Fragment>
+                  <div className="cta-wrapper">
+                    <button
+                      onClick={() =>
+                        fetchMore({
+                          variables: {
+                            offset: data.getRecipes.length
+                          },
+                          updateQuery: (prev, { fetchMoreResult }) => {
+                            if (!fetchMoreResult) return prev;
+                            return Object.assign({}, prev, {
+                              getTweets: [
+                                ...prev.getRecipes,
+                                ...fetchMoreResult.getRecipes
+                              ]
+                            });
+                          }
+                        })
+                      }
+                    >
+                      Next
+                    </button>
+                  </div>
+                  {data.getRecipes.map((item, index) => (
+                    <Recipe key={index} item={item} />
+                  ))}
+                </React.Fragment>
+              );
             }}
           </Query>
         </div>

@@ -11,7 +11,12 @@ const typeDefs = gql`
   }
 
   type Query {
-    getRecipes(limit: Int, sortField: String, sortOrder: String): [Recipe]
+    getRecipes(
+      offset: Int
+      limit: Int
+      sortField: String
+      sortOrder: String
+    ): [Recipe]
   }
 
 `;

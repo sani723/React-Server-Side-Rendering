@@ -346,11 +346,19 @@ module.exports = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_graphql_tag___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_graphql_tag__);
 var _jsxFileName = "/Users/sajjadhaider/Desktop/test/SSR/recipes/client/components/Recipes/index.js";
 
-var _templateObject = /*#__PURE__*/ _taggedTemplateLiteral(["\n  {\n    getRecipes {\n      image\n      label\n    }\n  }\n"]);
+var _templateObject = /*#__PURE__*/ _taggedTemplateLiteral(["\n  query GetRecipes($offset: Int, $limit: Int) {\n    getRecipes(offset: $offset, limit: $limit) {\n      image\n      label\n    }\n  }\n"]);
 
 
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -370,7 +378,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
-var getRecipesQuery = __WEBPACK_IMPORTED_MODULE_4_graphql_tag___default()(_templateObject);
+var GET_RECIPES_QUERY = __WEBPACK_IMPORTED_MODULE_4_graphql_tag___default()(_templateObject);
 
 var Recipes =
 /*#__PURE__*/
@@ -399,38 +407,73 @@ function (_React$Component) {
           lineNumber: 20
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_react_apollo__["Query"], {
-        query: getRecipesQuery,
+        query: GET_RECIPES_QUERY,
+        variables: {
+          offset: 0,
+          limit: 12
+        },
+        notifyOnNetworkStatusChange: true,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 25
+          lineNumber: 21
         }
       }, function (_ref) {
         var loading = _ref.loading,
             error = _ref.error,
-            data = _ref.data;
+            data = _ref.data,
+            fetchMore = _ref.fetchMore;
         if (loading) return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 27
+            lineNumber: 30
           }
         }, "Loading...");
         if (error) return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 28
+            lineNumber: 31
           }
-        }, "Error :( ", error); //console.log(data);
-
-        return data.getRecipes.map(function (item, index) {
+        }, "Error :( ", error);
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Fragment, {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 34
+          }
+        }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+          className: "cta-wrapper",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 35
+          }
+        }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", {
+          onClick: function onClick() {
+            return fetchMore({
+              variables: {
+                offset: data.getRecipes.length
+              },
+              updateQuery: function updateQuery(prev, _ref2) {
+                var fetchMoreResult = _ref2.fetchMoreResult;
+                if (!fetchMoreResult) return prev;
+                return Object.assign({}, prev, {
+                  getTweets: _toConsumableArray(prev.getRecipes).concat(_toConsumableArray(fetchMoreResult.getRecipes))
+                });
+              }
+            });
+          },
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 36
+          }
+        }, "Next")), data.getRecipes.map(function (item, index) {
           return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__RecipeListItem__["a" /* default */], {
             key: index,
             item: item,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 32
+              lineNumber: 58
             }
           });
-        });
+        }));
       })));
     }
   }]);
