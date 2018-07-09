@@ -42,7 +42,7 @@ class Recipes extends React.Component {
                           updateQuery: (prev, { fetchMoreResult }) => {
                             if (!fetchMoreResult) return prev;
                             return Object.assign({}, prev, {
-                              getTweets: [
+                              getRecipes: [
                                 ...prev.getRecipes,
                                 ...fetchMoreResult.getRecipes
                               ]

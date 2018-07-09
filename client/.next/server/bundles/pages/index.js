@@ -232,7 +232,7 @@ function (_React$Component) {
                 var fetchMoreResult = _ref2.fetchMoreResult;
                 if (!fetchMoreResult) return prev;
                 return Object.assign({}, prev, {
-                  getTweets: _toConsumableArray(prev.getRecipes).concat(_toConsumableArray(fetchMoreResult.getRecipes))
+                  getRecipes: _toConsumableArray(prev.getRecipes).concat(_toConsumableArray(fetchMoreResult.getRecipes))
                 });
               }
             });
